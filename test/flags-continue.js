@@ -11,7 +11,7 @@ describe('flag: --continue', function() {
 
   it('continues execution when flag is set', function(done) {
     runner({ verbose: false })
-      .gulp('test4', '--continue', '--cwd ./test/fixtures/gulpfiles')
+      .gulp('--continue', '--cwd ./test/fixtures/gulpfiles', 'test4')
       .run(cb);
 
     function cb(err, stdout, stderr) {
@@ -37,7 +37,7 @@ describe('flag: --continue', function() {
 
   it('stops execution when flag is not set', function(done) {
     runner({ verbose: false })
-      .gulp('test4', '--cwd ./test/fixtures/gulpfiles')
+      .gulp('--cwd ./test/fixtures/gulpfiles', 'test4')
       .run(cb);
 
     function cb(err, stdout, stderr) {

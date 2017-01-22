@@ -1,15 +1,15 @@
 {
-  "name": "gulp-cli",
-  "version": "1.2.2",
-  "description": "Command line interface for gulp",
+  "name": "gulp-clap",
+  "version": "1.0.0",
+  "description": "*nix command line argument parsing",
   "author": "Gulp Team <team@gulpjs.com> (http://gulpjs.com/)",
   "contributors": [],
-  "homepage": "http://gulpjs.com",
-  "repository": "gulpjs/gulp-cli",
+  "homepage": "",
+  "repository": "",
   "license": "MIT",
   "man": "gulp.1",
   "engines": {
-    "node": ">= 0.10"
+    "node": ">= 4.0.0"
   },
   "main": "index.js",
   "bin": {
@@ -29,7 +29,7 @@
     "test": "mocha --async-only --timeout 3000",
     "cover": "nyc --reporter=lcov --reporter=text-summary npm test",
     "coveralls": "nyc --reporter=text-lcov npm test | coveralls",
-    "changelog": "github-changes -o gulpjs -r gulp-cli -b master -f ./CHANGELOG.md --order-semver --use-commit-body"
+    "changelog": "github-changes -o jchip -r gulp-clap -b master -f ./CHANGELOG.md --order-semver --use-commit-body"
   },
   "dependencies": {
     "archy": "^1.0.0",

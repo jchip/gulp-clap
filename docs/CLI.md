@@ -1,22 +1,23 @@
 ### Usage
 
-gulp [flags] tasks
+gulp [flags] [--] [task [task options] task [task options] ...]
 
 ### Tasks
 
-Tasks can be executed by running `gulp <task> <othertask>`. Just running `gulp` will execute the task you registered called `default`. If there is no `default` task, gulp will error.
+Tasks can be executed by running `gulp <task> <othertask>`. Running `gulp` without specifying
+any task will execute the task you registered called `default`. If there is no `default` task, gulp will error.
 
-### Compilers
+### Task Options
 
-You can find a list of supported languages at https://github.com/js-cli/js-interpret. If you would like to add support for a new language, send pull requests/open issues on that project.
+Following each task name, you can specify a list of options that are meant for the task, which gulp will ignore.
 
-### Environment
-
-The CLI adds process.env.INIT_CWD which is the original cwd it was launched from.
+In order for gulp to ignore task options and figure out the task names, the convention will
+be to consider any argument not start with `-` a task name.
 
 ### Flags
 
-gulp has very few flags to know about. All other flags are for tasks to use if needed.
+You can specify gulp's flags before the tasks.  gulp will detect the start of tasks, 
+but you can specify `--` to explicitly indicate that.
 
 **Some flags only work with gulp 4 and will be ignored when invoked against gulp 3.**
 
@@ -29,7 +30,7 @@ gulp has very few flags to know about. All other flags are for tasks to use if n
 **--require** [path]
     Will require a module before running the gulpfile. This is useful for transpilers but also has other applications.
 
-**--gulpfile** [path]
+**--gulpfile**, **-p** [path]
     Manually set path of gulpfile. Useful if you have multiple gulpfiles. This will set the CWD to the gulpfile directory as well.
 
 **--cwd** [path]
@@ -61,3 +62,11 @@ gulp has very few flags to know about. All other flags are for tasks to use if n
 
 **--log-level**, **-L**
     Set the loglevel. -L for least verbose and -LLLL for most verbose. -LLL is default.
+
+### Compilers
+
+You can find a list of supported languages at https://github.com/js-cli/js-interpret. If you would like to add support for a new language, send pull requests/open issues on that project.
+
+### Environment
+
+The CLI adds process.env.INIT_CWD which is the original cwd it was launched from.

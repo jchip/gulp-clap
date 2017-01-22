@@ -4,7 +4,6 @@ var fs = require('fs');
 var path = require('path');
 var log = require('gulplog');
 var chalk = require('chalk');
-var yargs = require('yargs');
 var Liftoff = require('liftoff');
 var tildify = require('tildify');
 var interpret = require('interpret');
@@ -13,12 +12,12 @@ var merge = require('lodash.merge');
 var isString = require('lodash.isstring');
 var findRange = require('semver-greatest-satisfied-range');
 var exit = require('./lib/shared/exit');
-var cliOptions = require('./lib/shared/cliOptions');
 var completion = require('./lib/shared/completion');
 var verifyDeps = require('./lib/shared/verifyDependencies');
 var cliVersion = require('./package.json').version;
 var getBlacklist = require('./lib/shared/getBlacklist');
 var toConsole = require('./lib/shared/log/toConsole');
+var nixClap = require('./lib/shared/nix-clap');
 
 // Logging functions
 var logVerify = require('./lib/shared/log/verify');
@@ -50,12 +49,10 @@ var cli = new Liftoff({
   },
 });
 
-var usage =
-  '\n' + chalk.bold('Usage:') +
-  ' gulp ' + chalk.blue('[options]') + ' tasks';
+var claps = nixClap(process.argv, 2);
 
-var parser = yargs.usage(usage, cliOptions);
-var opts = parser.argv;
+var opts = claps.opts;
+opts._ = claps.tasks;
 
 // This translates the --continue flag in gulp
 // To the settle env variable for undertaker
@@ -106,7 +103,7 @@ function handleArguments(env) {
   });
 
   if (opts.help) {
-    console.log(parser.help());
+    console.log(claps.parser.help());
     exit(0);
   }
 
